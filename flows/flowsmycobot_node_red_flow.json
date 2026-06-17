@@ -1,0 +1,1350 @@
+[
+    {
+        "id": "1ecf5af1ad2be76e",
+        "type": "tab",
+        "label": "myCobot Robot Monitoring and Safe Manual Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "895e3106453f0940",
+        "type": "inject",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Read myCobot Status",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "0eaca57b3761ceb2"
+            ]
+        ]
+    },
+    {
+        "id": "0eaca57b3761ceb2",
+        "type": "exec",
+        "z": "1ecf5af1ad2be76e",
+        "command": "python \"D:\\MyCobot\\Datai\\robot_status_json.py\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Run Python myCobot Status Script",
+        "x": 360,
+        "y": 920,
+        "wires": [
+            [
+                "c93a241071cd7645"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c93a241071cd7645",
+        "type": "json",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Parse myCobot JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 700,
+        "y": 860,
+        "wires": [
+            [
+                "42bd622ef4672605",
+                "c105903b89f0c9b0",
+                "8f5b215a85abffea",
+                "18083a07b2f1a5c3",
+                "1c7993fdd9285267",
+                "904bf26ec7fdc0ab",
+                "983f6cc9bfe5f96a",
+                "d6582eebf56d79b2",
+                "dac86c51e469a9cc",
+                "3a481d196d04fbe3",
+                "ff37d619e3c359a1",
+                "34ae3bfc8142b0b6",
+                "cb48ca7819cb9f4d",
+                "3bb9804ff20b91db",
+                "4d72ba055cfe8350",
+                "c1593b0a587e2336"
+            ]
+        ]
+    },
+    {
+        "id": "42bd622ef4672605",
+        "type": "debug",
+        "z": "1ecf5af1ad2be76e",
+        "name": "myCobot JSON Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "852f1ad8cc937502",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "de8acdee56c15260",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Robot ID",
+        "label": "Robot ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1400,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c105903b89f0c9b0",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Change Robot ID",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.robot_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1170,
+        "y": 580,
+        "wires": [
+            [
+                "852f1ad8cc937502"
+            ]
+        ]
+    },
+    {
+        "id": "d47d46472a01484e",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "de8acdee56c15260",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Connection",
+        "label": "Connection",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1410,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "8f5b215a85abffea",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Change Connection",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.connected",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 620,
+        "wires": [
+            [
+                "d47d46472a01484e"
+            ]
+        ]
+    },
+    {
+        "id": "8f854c5f5a17b450",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "de8acdee56c15260",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Status",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "18083a07b2f1a5c3",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Change Status",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.status",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 660,
+        "wires": [
+            [
+                "8f854c5f5a17b450"
+            ]
+        ]
+    },
+    {
+        "id": "da6b2eddc49ad616",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 2",
+        "label": "Joint 2",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "0e8fe21bdbe05239",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 3",
+        "label": "Joint 3",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "1c7993fdd9285267",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 3",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[2]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 780,
+        "wires": [
+            [
+                "0e8fe21bdbe05239"
+            ]
+        ]
+    },
+    {
+        "id": "36d35e3dae49884e",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 4",
+        "label": "Joint 4",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "904bf26ec7fdc0ab",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 4",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[3]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 820,
+        "wires": [
+            [
+                "36d35e3dae49884e"
+            ]
+        ]
+    },
+    {
+        "id": "983f6cc9bfe5f96a",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 700,
+        "wires": [
+            [
+                "3f0180d06754c17b"
+            ]
+        ]
+    },
+    {
+        "id": "3f0180d06754c17b",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 1",
+        "label": "Joint 1",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "d6582eebf56d79b2",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 2 ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[1]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 740,
+        "wires": [
+            [
+                "da6b2eddc49ad616"
+            ]
+        ]
+    },
+    {
+        "id": "dac86c51e469a9cc",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 5",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[4]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 860,
+        "wires": [
+            [
+                "4b14d793253e6142"
+            ]
+        ]
+    },
+    {
+        "id": "3a481d196d04fbe3",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Joint 6",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.angles[5]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 900,
+        "wires": [
+            [
+                "ebd7dfdad1b7370b"
+            ]
+        ]
+    },
+    {
+        "id": "4b14d793253e6142",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 5",
+        "label": "Joint 5",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ebd7dfdad1b7370b",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "f8c5561a8fa01a94",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "Joint 6",
+        "label": "Joint 6",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "ff37d619e3c359a1",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 940,
+        "wires": [
+            [
+                "16f7a8183b5bb9bb"
+            ]
+        ]
+    },
+    {
+        "id": "34ae3bfc8142b0b6",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Y",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[1]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 980,
+        "wires": [
+            [
+                "859eca00a0ebc118"
+            ]
+        ]
+    },
+    {
+        "id": "cb48ca7819cb9f4d",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Z",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[2]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 1020,
+        "wires": [
+            [
+                "29a2630eca71039e"
+            ]
+        ]
+    },
+    {
+        "id": "3bb9804ff20b91db",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "RX",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[3]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 1060,
+        "wires": [
+            [
+                "dea70b1c0f9f1f35"
+            ]
+        ]
+    },
+    {
+        "id": "4d72ba055cfe8350",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "RY",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[4]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 1100,
+        "wires": [
+            [
+                "c1b5c839c97cc7a3"
+            ]
+        ]
+    },
+    {
+        "id": "c1593b0a587e2336",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "RZ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.coords[5]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 1140,
+        "wires": [
+            [
+                "d796a3daed795aac"
+            ]
+        ]
+    },
+    {
+        "id": "859eca00a0ebc118",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Y",
+        "label": "Y",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "29a2630eca71039e",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Z",
+        "label": "Z",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "dea70b1c0f9f1f35",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "RX",
+        "label": "RX",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "16f7a8183b5bb9bb",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "X",
+        "label": "X",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "c1b5c839c97cc7a3",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "RY",
+        "label": "RY",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "d796a3daed795aac",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "92e510cadf65c18c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "RZ",
+        "label": "RZ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1390,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "b27911fe639383eb",
+        "type": "ui-button",
+        "z": "1ecf5af1ad2be76e",
+        "group": "3357d12e1e8b8e73",
+        "name": "J6 +5",
+        "label": "J6 +5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "J6_PLUS_5",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 90,
+        "y": 1140,
+        "wires": [
+            [
+                "812e60bd319380e4"
+            ]
+        ]
+    },
+    {
+        "id": "ae5bc945e0c19dc2",
+        "type": "exec",
+        "z": "1ecf5af1ad2be76e",
+        "command": "python \"D:\\MyCobot\\Datai\\robot_j6_plus5.py\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Run J6 +5 Script",
+        "x": 550,
+        "y": 1140,
+        "wires": [
+            [
+                "356e65ed17f83a61"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d667deafb533715a",
+        "type": "json",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Parse Control JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 900,
+        "y": 1320,
+        "wires": [
+            [
+                "c84a52121ba4f584",
+                "750c2a7de545f2f9",
+                "7f3a51462c303165"
+            ]
+        ]
+    },
+    {
+        "id": "c84a52121ba4f584",
+        "type": "debug",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Control Result Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "356e65ed17f83a61",
+        "type": "function",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Extract Control JSON",
+        "func": "let text = String(msg.payload || \"\").trim();\n\nlet start = text.indexOf(\"{\");\nlet end = text.lastIndexOf(\"}\");\n\nif (start === -1 || end === -1 || end <= start) {\n    node.error(\"No JSON object found in Python output: \" + text, msg);\n    return null;\n}\n\nmsg.payload = text.substring(start, end + 1);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 1220,
+        "wires": [
+            [
+                "d667deafb533715a"
+            ]
+        ]
+    },
+    {
+        "id": "7a3990947ab5e23b",
+        "type": "ui-button",
+        "z": "1ecf5af1ad2be76e",
+        "group": "3357d12e1e8b8e73",
+        "name": "J6 -5",
+        "label": "J6 -5",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "J6_MINUS_5",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 90,
+        "y": 1300,
+        "wires": [
+            [
+                "812e60bd319380e4"
+            ]
+        ]
+    },
+    {
+        "id": "b19f23c5278a66e7",
+        "type": "exec",
+        "z": "1ecf5af1ad2be76e",
+        "command": "python \"D:\\MyCobot\\Datai\\robot_j6_minus5.py\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Run J6 -5 Script",
+        "x": 540,
+        "y": 1320,
+        "wires": [
+            [
+                "356e65ed17f83a61"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "750c2a7de545f2f9",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Last Command ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.command",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 1280,
+        "wires": [
+            [
+                "f370d11819a8332f"
+            ]
+        ]
+    },
+    {
+        "id": "7f3a51462c303165",
+        "type": "change",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Command Status",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.status",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 1320,
+        "wires": [
+            [
+                "37ed1684c03c4e3b"
+            ]
+        ]
+    },
+    {
+        "id": "37ed1684c03c4e3b",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "de8acdee56c15260",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Command Status",
+        "label": "Command Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1490,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "f370d11819a8332f",
+        "type": "ui-text",
+        "z": "1ecf5af1ad2be76e",
+        "group": "de8acdee56c15260",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Last Command",
+        "label": "Last Command",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1480,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "812e60bd319380e4",
+        "type": "delay",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Robot Command Rate Limit",
+        "pauseType": "rate",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 1220,
+        "wires": [
+            [
+                "15444f13d4cce1a5"
+            ]
+        ]
+    },
+    {
+        "id": "15444f13d4cce1a5",
+        "type": "switch",
+        "z": "1ecf5af1ad2be76e",
+        "name": "Switch Control Command",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "J6_PLUS_5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "J6_MINUS_5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 1220,
+        "wires": [
+            [
+                "ae5bc945e0c19dc2"
+            ],
+            [
+                "b19f23c5278a66e7"
+            ]
+        ]
+    },
+    {
+        "id": "de8acdee56c15260",
+        "type": "ui-group",
+        "name": "Robot Status",
+        "page": "f0aeca3834c1d1df",
+        "width": 6,
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "f8c5561a8fa01a94",
+        "type": "ui-group",
+        "name": "Angles",
+        "page": "f0aeca3834c1d1df",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "92e510cadf65c18c",
+        "type": "ui-group",
+        "name": "Robot Pose",
+        "page": "f0aeca3834c1d1df",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "3357d12e1e8b8e73",
+        "type": "ui-group",
+        "name": "Manual Control",
+        "page": "f0aeca3834c1d1df",
+        "width": 6,
+        "height": 1,
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "f0aeca3834c1d1df",
+        "type": "ui-page",
+        "name": "myCobot Monitoring",
+        "ui": "8da223d9d5030677",
+        "path": "/mycobot-monitoring",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "a761c250d8ca3b6a",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "8da223d9d5030677",
+        "type": "ui-base",
+        "name": "CNC Shopfloor Lab",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "a761c250d8ca3b6a",
+        "type": "ui-theme",
+        "name": "Standardthema",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "fe3f0374a7a297fc",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]
